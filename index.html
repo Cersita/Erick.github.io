@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROYECTO INTERDISCIPLINARIO</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<header>
+    <h1> CONSECUENCIAS DE LA CONTAMINACION </h1>
+    <h2> EFECTOS Y CAUSAS </h2>
+</header>
+<style>
+    header {
+        background-color: rgb(67, 64, 109);
+        height: 100px;
+        border-radius: 10px;
+        text-align: center;
+        padding: 20px;
+    }
+
+    body {
+        margin: 0;
+        overflow: visible;
+        background-color: rgb(32, 31, 31);
+    }
+
+    main {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    nav {
+        background-color: rgb(26, 24, 23);
+        border-radius: 10px;
+        padding: 50px;
+        color: rgb(246, 57, 57);
+        flex: 1;
+    }
+
+    section {
+        flex: 1;
+        display: flex;
+        gap: 15px;
+    }
+
+    h1 {
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 50px;
+        color: rgb(8, 2, 13);
+        position: absolute;
+        left: 200px;
+        padding: 20px;
+    }
+
+    h2 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    h3 {
+        color: rgb(65, 91, 113);
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: rgb(126, 175, 172);
+    }
+
+    canvas {
+        width: 750px;
+        height: 700px;
+        margin: 20px auto;
+    }
+
+    .contenedor {
+        background-color: #fff;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .animacion {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .cuerda {
+        width: 3px;
+        height: 100px;
+        background-color: #aaa;
+        margin: 20px 0;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .luz {
+        width: 50px;
+        height: 50px;
+        background-color: #ffeb3b;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 10px #ffeb3b;
+        transition: all 0.3s;
+    }
+
+    .cuerda.off .luz {
+        background-color: #333;
+        box-shadow: none;
+    }
+
+    .mensaje {
+        margin-top: 20px;
+        color: #154360;
+    }
+
+    .calculadora label,
+    .calculadora input,
+    .calculadora button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: left;
+        margin: 10px auto;
+    }
+
+    .calculadora button {
+        background-color: #154360;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    #resultado {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    #controls {
+        background-color: rgba(64, 12, 68, 0.8);
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .check-panel {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .check-panel label {
+        color: white;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    #container img {
+        display: none;
+        width: 300px;
+        height: auto;
+        margin-left: 10px;
+    }
+
+    #container img.visible {
+        display: block;
+        padding-left: 25px;
+    }
+
+    .info-container {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .visible {
+        display: block;
+    }
+
+    #container {
+        height: 450px;
+        width: 900px;
+        position: relative;
+    }
+
+    a-scene {
+        height: 100%;
+        width: 100%;
+    }
+
+    .image-container img {
+        display: none;
+        width: 200px;
+        height: auto;
+        margin-left: 10px;
+    }
+
+    .image-container img.visible {
+        display: block;
+        padding-left: 25px;
+    }
+</style>
+
+<body>
+    <main>
+        <nav>
+            <h2> CIENCIAS </h2>
+            <p>
+                <a href="#mate"> MATEMATICAS </a>
+            <p>
+                <a href="#hitoria"> HISTORIA </a>
+            </p>
+            <p>
+                <a href="#fisica"> FISICA </a>
+            </p>
+            <p>
+                <a href="#ingle"> INGLES </a>
+            </p>
+        </nav>
+        <nav>
+            <h2> INFORMATICA </h2>
+            <a href="#sistemasop"> SISTEMAS OPERATIVOS </a>
+            <p>
+                <a href="#soporte"> SOPORTE TECNICO </a>
+            </p>
+        </nav>
+    </main>
+
+    <section>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <aside>
+            <h2>
+                <center>
+                    <h3 id="mate"> MATEMATICAS </h3>
+                </center>
+            </h2>
+            <h2 style="color: #154360; font-weight: bold;">ESTADISTICAS DE LA CONTAMINACION AMBIENTAL</h2>
+            <aside
+                style="padding: 20px; color: rgb(126, 175, 172); font-family: Arial, sans-serif; display: flex; gap: 20px;">
+                <div style="flex: 1; color: rgb(126, 175, 172);">
+                    <p><strong>2020 - Disminución debido a la pandemia de COVID-19</strong></p>
+                    <p>Durante el 2020, las emisiones globales de CO₂ disminuyeron aproximadamente un 7%. Este descenso
+                        se debió a la disminución de actividades industriales y tráfico vehicular, como consecuencia de
+                        las restricciones impuestas durante la pandemia de COVID-19.</p>
+
+                    <p><strong>2021 - Aumento con la reactivación económica</strong></p>
+                    <p>En 2021, las emisiones de CO₂ aumentaron alrededor de un 4,8% en comparación con el 2020. La
+                        reactivación de las actividades industriales y el transporte, así como el aumento en el uso de
+                        combustibles fósiles, contribuyeron a este incremento.</p>
+
+                    <p><strong>2022 - Incremento moderado</strong></p>
+                    <p>En 2022, las emisiones globales de CO₂ crecieron un 1,5% respecto al año anterior. Este aumento
+                        estuvo vinculado a eventos climáticos extremos como sequías, inundaciones y huracanes, así como
+                        a la deforestación en áreas como la Amazonía.</p>
+
+                    <p><strong>2023 - Incremento continuo</strong></p>
+                    <p>Para 2023, las emisiones se incrementaron en un 3,5% en comparación con 2022. Factores como el
+                        incremento de emisiones vehiculares, minería y la quema de combustibles fósiles contribuyeron a
+                        este aumento.</p>
+
+                    <p><strong>2024 - Aumento significativo</strong></p>
+                    <p>En 2024, la contaminación aumentó un 7,2%, elevando el total de emisiones a un 24%. Este
+                        incremento se debió a la quema excesiva de combustibles fósiles, la expansión de actividades
+                        agrícolas y de minería ilegal, así como a los incendios forestales.</p>
+
+                </div>
+                <div style="border-left: 2px solid #ccc; height: 500px; margin: 0 20px;"></div>
+
+                <div style="flex: 1;">
+                    <h2 style="color: #154360; font-weight: bold;">GRAFICO DE BARRAS: Emisiones de CO₂</h2>
+                    <canvas id="co2Chart"></canvas>
+                </div>
+            </aside>
+        </aside>
+    </section>
+    <br>
+    <aside>
+        <center>
+            <h2>
+                <h3 id="hitoria"> HISTORIA </h3>
+            </h2>
+        </center>
+        <br>
+        <section id="calc-emisiones">
+            <div class="contenedor">
+                <h2>USO DE FOCO - EMISIÓN DE CO2</h2>
+                <div class="animacion">
+                    <div class="cuerda" onclick="toggleLight()">
+                        <div class="luz"></div>
+                    </div>
+                    <div class="mensaje"><strong>Calculadora de Emisiones de CO2 por hora</strong></div>
+                </div>
+                <div class="calculadora">
+                    <label for="horas">Horas de uso de un Foco </label>
+                    <input type="number" id="horas" placeholder="Ej: 2">
+                    <button onclick="calcularCO2()">Calcular Emisiones</button>
+                    <div id="resultado"></div>
+                </div>
+            </div>
+        </section>
+    </aside>
+    <br>
+    <aside>
+        <center>
+            <h2>
+                <h3 id="fisica"> FISICA </h3>
+            </h2>
+        </center>
+        <aside>
+            <div>
+                <h2>EFECTOS AL PLANETA</h2>
+                <div id="controls">
+                    <div class="check-panel">
+                        <label>
+                            <input type="checkbox" id="co2-checkbox" onclick="toggleImage('co2')" /> CO2
+                        </label>
+                        <label>
+                            <input type="checkbox" id="metano-checkbox" onclick="toggleImage('metano')" /> Metano
+                        </label>
+                        <label>
+                            <input type="checkbox" id="plomo-checkbox" onclick="toggleImage('plomo')" /> Plomo
+                        </label>
+                        <label>
+                            <input type="checkbox" id="oxigeno-checkbox" onclick="toggleImage('oxigeno')" /> Oxígeno
+                        </label>
+                    </div>
+                </div>
+
+                <section>
+                    <div id="container">
+                        <a-scene embedded id="scene">
+                            <a-assets>
+                                <a-asset-item id="planetModel" src="planeta.glb"></a-asset-item>
+                                <img id="backgroundImage" src="estrellitas.jpeg">
+                            </a-assets>
+                            <a-sky src="#backgroundImage"></a-sky>
+                            <a-entity id="planet" gltf-model="#planetModel" position="0 1.5 -3" scale="3 3 3"
+                                animation-mixer rotation="0 0 0" drag-rotate-component></a-entity>
+                            <a-camera position="0 1.6 0">
+                                <a-cursor></a-cursor>
+                            </a-camera>
+                        </a-scene>
+                    </div>
+                    <center>
+                        <div class="info-container" style="text-align: justify;">
+                            <div class="image-container">
+                                <img id="co2-image" src="co2.jpg" class="hidden">
+                                <h2 style="color: rgb(126, 175, 172); font-weight: bold;">CO2 (Dióxido de Carbono)</h2>
+                                <p style="color: rgb(126, 175, 172); line-height: 1.6;"> El CO₂ es uno de los
+                                    principales gases de
+                                    efecto invernadero. Contribuye al calentamiento global atrapando el calor en la
+                                    atmósfera. Esto puede provocar: </p>
+                                <ul style="color: rgb(126, 175, 172); line-height: 1.6;">
+                                    <li><strong>Aumento de la temperatura global:</strong> contribuyendo al deshielo de
+                                        los
+                                        polos y al aumento del nivel del mar.</li>
+                                    <li><strong>Acidificación de los océanos:</strong> que afecta negativamente a la
+                                        vida
+                                        marina, especialmente a los corales.</li>
+                                    <li><strong>Fenómenos meteorológicos extremos:</strong> como huracanes, sequías e
+                                        inundaciones.</li>
+                                </ul>
+                            </div>
+                            <div class="image-container">
+                                <img id="metano-image" src="metano.jpg" class="hidden">
+                                <h2 style="color: rgb(126, 175, 172); font-weight: bold;">Metano</h2>
+                                <p style="color: rgb(126, 175, 172); line-height: 1.6;"> El metano (CH₄) es otro potente
+                                    gas de
+                                    efecto
+                                    invernadero, aunque se libera en menores cantidades que el CO₂, es mucho más
+                                    potente.
+                                </p>
+                                <ul style="color: rgb(126, 175, 172); line-height: 1.6;">
+                                    <li><strong>Efecto invernadero:</strong> retiene más calor en la atmósfera que el
+                                        CO₂,
+                                        acelerando el calentamiento global.</li>
+                                    <li><strong>Contaminación del aire:</strong> contribuye a la formación de ozono
+                                        troposférico, un contaminante que daña la salud humana y los ecosistemas.</li>
+                                    <li><strong>Derretimiento del permafrost:</strong> puede liberar más metano y CO₂,
+                                        creando un ciclo de retroalimentación negativa.</li>
+                                </ul>
+                            </div>
+                            <div class="image-container">
+                                <img id="plomo-image" src="plomo.jpg" class="hidden">
+                                <h2 style="color: rgb(126, 175, 172); font-weight: bold;">Plomo</h2>
+                                <p style="color: rgb(126, 175, 172); line-height: 1.6;"> El plomo (Pb) es un metal
+                                    pesado que puede
+                                    causar graves problemas ambientales y de salud. </p>
+                                <ul style="color: rgb(126, 175, 172); line-height: 1.6;">
+                                    <li><strong>Contaminación del suelo y agua:</strong> El plomo se acumula en el medio
+                                        ambiente y puede llegar a plantas y animales, afectando la cadena alimentaria.
+                                    </li>
+                                    <li><strong>Toxicidad:</strong> Daña la flora y fauna, incluidos los seres humanos,
+                                        causando problemas neurológicos y renales.</li>
+                                    <li><strong>Bioacumulación:</strong> Se acumula en los tejidos de los organismos
+                                        vivos,
+                                        llevando a mayores concentraciones en depredadores superiores.</li>
+                                </ul>
+                            </div>
+                            <div class="image-container">
+                                <img id="oxigeno-image" src="oxigeno.jpg" class="hidden">
+                                <h2 style="color: rgb(126, 175, 172); font-weight: bold;">Oxígeno</h2>
+                                <p style="color: rgb(126, 175, 172); line-height: 1.6;"> El oxígeno (O₂) es crucial para
+                                    la vida,
+                                    pero
+                                    en exceso (reactivo) puede causar algunos problemas:</p>
+                                <ul style="color: rgb(126, 175, 172); line-height: 1.6;">
+                                    <li><strong>Fototoxicidad:</strong> Exceso de oxígeno reactivo puede dañar tejidos
+                                        vivos, conocido como estrés oxidativo.</li>
+                                    <li><strong>Interrupción de ecosistemas acuáticos:</strong> La hipoxia (bajos
+                                        niveles de
+                                        oxígeno) puede dañar los ecosistemas acuáticos, afectando a la vida marina.</li>
+                                    <li><strong>Oxidación:</strong> Acelera la corrosión de estructuras metálicas,
+                                        afectando
+                                        infraestructuras.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </center>
+                </section>
+
+            </div>
+        </aside>
+    </aside>
+
+    <br>
+    <aside>
+        <center>
+            <h2>
+                <h3 id="ingle"> INGLES </h3>
+            </h2>
+        </center>
+        <aside>
+            <aside
+                style="display: flex; align-items: center; justify-content: space-between; padding: 20px; border-radius: 10px; color: #333; font-family: Arial, sans-serif;">
+                <div style="flex: 1;margin-right: -30; text-align: justify; padding-right: 20px;">
+                    <h2 style="color: rgb(126, 175, 172); font-weight: bold;">AIR POLLUTION</h2>
+                    <p style="color: rgb(126, 175, 172); line-height: 1.6;">
+                        Air pollution is one of the most significant environmental issues facing the world today. It is
+                        primarily caused by the release of harmful substances into the atmosphere from various human
+                        activities, such as industrial manufacturing, transportation, and waste disposal.
+                    </p>
+                    <p style="color: rgb(126, 175, 172); line-height: 1.6;">
+                        These pollutants, including particulate matter, carbon monoxide, sulfur dioxide, and nitrogen
+                        oxides, contribute to the degradation of air quality, posing severe health risks to humans. Poor
+                        air quality can lead to respiratory illnesses, cardiovascular diseases, and aggravated asthma
+                        conditions.
+                    </p>
+                    <p style="color: rgb(126, 175, 172); line-height: 1.6;">
+                        Moreover, air pollutants can have detrimental effects on the environment, such as acid rain,
+                        which damages forests, lakes, and buildings, and contributes to the phenomenon of global warming
+                        by trapping heat in the Earth's atmosphere.
+                    </p>
+                    <p style="color: rgb(126, 175, 172); line-height: 1.6;">
+                        Addressing air pollution requires a comprehensive approach involving stricter emissions
+                        regulations, the adoption of clean energy sources, and the promotion of sustainable practices to
+                        ensure a healthier and cleaner environment for future generations.
+                    </p>
+                </div>
+                <div>
+                    <img src="ingle.jpeg" alt="Air Pollution"
+                        style="max-height: 400px; max-width: 400px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                </div>
+            </aside>
+        </aside>
+    </aside>
+    <br>
+    <aside>
+        <h2>
+            <center>
+                <h3 id="sistemasop"> SISTEMAS OPERATIVOS </h3>
+            </center>
+        </h2>
+        <center>
+            <h2 style="color: #154360; font-weight: bold;">ELEMENTOS O COMPONENTES DE RED QUE CONTAMINAN EL
+                MEDIO AMBIENTE</h2>
+            <aside style="padding: 20px; color: #333; font-family: Arial, sans-serif; display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <p>Los diversos elementos y componentes de una red pueden causar contaminación ambiental
+                        significante si
+                        no se eliminan correctamente. Estos dispositivos tecnológicos usados en infraestructuras
+                        de
+                        comunicación pueden liberar sustancias tóxicas y contribuir a la polución del suelo,
+                        agua y
+                        aire,
+                        además de afectar el cambio climático negativamente.</p>
+                    <img src="componentes.jpg" alt="Chatarra Electrónica 1" width="500px" height="300px"
+                        style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                </div>
+                <div style="border-left: 2px solid #ccc; height: 550px; margin: 0 20px;"></div>
+                <div style="flex: 1;">
+                    <p><strong>Baterías de Litio-Ion y Plomo-Ácido</strong><br>
+                        <em>Problema:</em> Utilizadas en equipos de red como routers y UPS, estas baterías
+                        contienen
+                        metales
+                        pesados como litio, plomo y cadmio.<br>
+                        <em>Impacto:</em> Si no se reciclan de manera adecuada, pueden liberar toxinas al suelo
+                        y al
+                        agua,
+                        contaminando y afectando la vida acuática y terrestre.
+                    </p>
+                    <p><strong>Circuitos Impresos (PCB)</strong><br>
+                        <em>Problema:</em> Los PCB contienen mezclas de metales pesados como plomo y mercurio, y
+                        productos
+                        químicos como retardantes de llama bromados.<br>
+                        <em>Impacto:</em> Al ser incinerados o tirados incorrectamente, estos componentes
+                        liberan
+                        toxinas
+                        que pueden contaminar el aire y el suelo, afectando la salud humana y el medio ambiente.
+                    </p>
+                    <p><strong>Retardantes de Llama Bromados (BFR)</strong><br>
+                        <em>Problema:</em> Usados en carcasas plásticas y PCB para disminuir la inflamabilidad,
+                        estos
+                        químicos son persistentes en el medio ambiente.<br>
+                        <em>Impacto:</em> Pueden acumularse en organismos vivos, alterando el sistema endocrino
+                        y
+                        afectando
+                        el desarrollo neurológico en humanos y animales.
+                    </p>
+                    <br>
+                    <img src="baterias.jpg" alt="Baterías de Litio-Ion y Plomo-Ácido"
+                        style="max-width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                    <img src="circuitos.jpg" alt="Circuitos Impresos"
+                        style="max-width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                    <img src="retardantes.jpg" alt="Retardantes de Llama Bromados"
+                        style="max-width: 200px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                </div>
+            </aside>
+        </center>
+        <aside>
+            <center>
+                <h2>
+                    <h3 id="soporte"> SOPORTE TECNICO </h3>
+                </h2>
+            </center>
+        </aside>
+        <center>
+            <h2 style="color: #154360; font-weight: bold;">CHATARRA ELECTRÓNICA</h2>
+            <aside style="padding: 20px; color: #333; font-family: Arial, sans-serif; display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <p>La chatarra electrónica, también conocida como desechos electrónicos o basura tecnológica, se
+                        refiere a dispositivos eléctricos y electrónicos desechados. Estos incluyen elementos como
+                        computadoras, teléfonos móviles, televisores, electrodomésticos y baterías. Debido a su
+                        composición, contienen materiales peligrosos como plomo, mercurio, cadmio y retardantes de llama
+                        bromados.</p>
+                    <img src="chatarra.jpg" alt="Chatarra Electrónica"
+                        style="max-width: 450px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                </div>
+                <div style="border-left: 2px solid #ccc; height: 450px; margin: 0 20px;"></div>
+                <div style="flex: 1;">
+                    <p><strong>Problemas Ambientales y de Salud</strong><br>
+                        Los componentes de la chatarra electrónica pueden liberar sustancias tóxicas cuando no se
+                        gestionan adecuadamente. Esto puede llevar a la contaminación del suelo, agua y aire, y
+                        representar graves riesgos para la salud humana. Por ejemplo, la exposición al plomo puede
+                        perjudicar el sistema nervioso y causar problemas de desarrollo en niños. Además, metales como
+                        el mercurio pueden tener efectos neurológicos severos.</p>
+                    <p><strong>Gestión y Reciclaje</strong><br>
+                        El manejo adecuado de la chatarra electrónica es crucial para minimizar estos riesgos. El
+                        reciclaje permite recuperar materiales valiosos como el oro y la plata, que están presentes en
+                        dispositivos electrónicos. A través de procesos adecuados de reciclaje y reutilización, se puede
+                        disminuir la contaminación y conservar recursos.</p>
+                    <p><strong>Impactos Globales</strong><br>
+                        La chatarra electrónica es un problema creciente a nivel mundial. Se estima que anualmente se
+                        generan alrededor de 50 millones de toneladas de basura electrónica. Programas de reciclaje y
+                        reutilización, junto con regulaciones más estrictas, son necesarios para enfrentar esta
+                        problemática de manera efectiva.</p>
+                </div>
+            </aside>
+        </center>
+
+
+
+
+        <script>
+            const ctx = document.getElementById('co2Chart').getContext('2d');
+            const co2Chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        data: [7, 11.8, 13.3, 16.8, 24],
+                        backgroundColor: [
+                            'rgba(93, 104, 128, 0.7)',
+                            'rgba(79, 79, 79, 0.7)',
+                            'rgba(96, 125, 139, 0.7)',
+                            'rgba(99, 121, 117, 0.7)',
+                            'rgba(122, 128, 137, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(93, 104, 128, 1)',
+                            'rgba(79, 79, 79, 1)',
+                            'rgba(96, 125, 139, 1)',
+                            'rgba(99, 121, 117, 1)',
+                            'rgba(122, 128, 137, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Años',
+                                color: '#000',
+                                font: {
+                                    size: 14,
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        }
+                    }
+                }
+            });
+            function toggleLight() {
+                const cuerda = document.querySelector('.cuerda');
+                cuerda.classList.toggle('off');
+            }
+
+            function calcularCO2() {
+                const horas = document.getElementById('horas').value;
+                const co2PorHora = 0.05;
+                const resultado = horas * co2PorHora;
+
+                document.getElementById('resultado').innerText = `Total de emisiones: ${resultado.toFixed(2)} kg de CO2`;
+            }
+            function toggleImage(compound) {
+                const checkbox = document.getElementById(`${compound}-checkbox`);
+                const image = document.getElementById(`${compound}-image`);
+
+                if (checkbox.checked) {
+                    image.classList.remove('hidden');
+                    image.classList.add('visible');
+                    image.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    image.classList.add('hidden');
+                    image.classList.remove('visible');
+                }
+            }
+        </script>
+
+</body>
